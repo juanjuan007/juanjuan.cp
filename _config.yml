@@ -1,5 +1,2 @@
-title: cp.juanjuan
 permalink: /blog/:title/
-markdown: kramdown
-highlighter: rouge # 讓程式碼高亮
-exclude: [README.md] # 不想變成網頁的檔案
+future: true
