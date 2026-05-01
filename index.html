@@ -3,70 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>juanjuan</title>
+    <title>juanjuan | Dev Notebook</title>
     <style>
         /* --- 基礎設定 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #fafafa;
+            background-color: #f5f5f7; /* 淺灰色背景 */
             color: #1a1a1a;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            height: 100vh;
+            font-family: "PingFang TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* 防止主頁捲動 */
+            padding: 40px;
         }
 
+        /* 1. 整體方格放大：從 1000px 變更為 1200px */
         .main-container {
             display: flex;
-            width: 90%;
-            max-width: 1000px;
+            width: 100%;
+            max-width: 1200px; 
             background: white;
-            padding: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-radius: 12px;
+            padding: 80px; /* 內距也加深，更有高級感 */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            border-radius: 20px;
             align-items: center;
         }
 
         /* --- 左側照片區 --- */
         .photo-side {
-            flex: 1;
-            padding-right: 50px;
+            flex: 1.3; /* 照片佔據稍大部分 */
+            padding-right: 80px;
             display: flex;
             justify-content: center;
         }
 
         .photo-frame {
             width: 100%;
-            max-width: 320px; /* 限制照片最大寬度 */
-            /* 💡這裡移除了 aspect-ratio，保留照片原始長方形比例 */
+            max-width: 480px; /* 照片框架顯著放大 */
             overflow: hidden;
-            border-radius: 8px; /* 輕微圓角 */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 淡淡的陰影 */
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .photo-frame img {
             width: 100%;
-            height: auto; /* 高度自動 */
+            height: auto;
             display: block;
-            object-fit: contain; /* 確保整張照片都顯示出來 */
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.05); /* 懸停時稍微放大照片 */
         }
 
         /* --- 右側文字內容區 --- */
         .content-side {
-            flex: 1.2; /* 文字區稍微寬一點 */
-            border-left: 1px solid #eee;
-            padding-left: 50px;
+            flex: 1;
+            border-left: 3px solid #f0f0f0; /* 分隔線加粗 */
+            padding-left: 80px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 35px;
-            letter-spacing: -1.5px;
+            font-size: 3.5rem; /* 標題顯著放大 */
+            font-weight: 900;
+            margin-bottom: 50px;
+            letter-spacing: -2px;
             text-transform: uppercase;
+            line-height: 1;
+            color: #000;
         }
 
         .note-list {
@@ -74,49 +80,43 @@
         }
 
         .note-item {
-            margin-bottom: 22px;
+            margin-bottom: 30px;
         }
 
         .note-item a {
             text-decoration: none;
-            color: #444;
-            font-size: 1.25rem;
-            font-weight: 600;
-            transition: 0.2s ease;
+            color: #666;
+            font-size: 1.6rem; /* 選單文字放大 */
+            font-weight: 700;
+            transition: all 0.3s ease;
             display: inline-block;
         }
 
-        /* 懸停效果：文字變黑並稍微靠左 */
+        /* 懸停效果 */
         .note-item a:hover {
             color: #000;
-            transform: translateX(5px);
+            transform: translateX(15px);
         }
 
-        /* --- 響應式設計 (手機板) --- */
-        @media (max-width: 768px) {
-            body { overflow: auto; }
+        /* --- 響應式設計 --- */
+        @media (max-width: 992px) {
             .main-container {
                 flex-direction: column;
-                height: auto;
-                margin: 20px;
-                padding: 30px;
+                padding: 60px 40px;
+                text-align: center;
             }
             .photo-side {
                 padding-right: 0;
-                margin-bottom: 30px;
-            }
-            .photo-frame {
-                max-width: 200px; /* 手機板照片小一點 */
+                margin-bottom: 50px;
             }
             .content-side {
                 border-left: none;
                 padding-left: 0;
-                border-top: 1px solid #eee;
-                padding-top: 30px;
+                border-top: 3px solid #f0f0f0;
+                padding-top: 50px;
                 width: 100%;
-                text-align: center;
             }
-            h1 { font-size: 1.8rem; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -125,17 +125,17 @@
     <div class="main-container">
         <div class="photo-side">
             <div class="photo-frame">
-                <img src="photo.jpg" alt="juanjuan">
+                <img src="juan.jpg" alt="Juan">
             </div>
         </div>
 
         <div class="content-side">
-            <h1>Dev Notebook.</h1>
+            <h1>JUAN.<br>DEV LOG</h1>
             <ul class="note-list">
-                <li class="note-item"><a href="pages/algorithms.html">01 Algorithm Notes</a></li>
-                <li class="note-item"><a href="pages/web-dev.html">02 Web Development</a></li>
-                <li class="note-item"><a href="pages/problem-solving.html">03 Problem Solving</a></li>
-                <li class="note-item"><a href="pages/data-structures.html">04 Data Structures</a></li>
+                <li class="note-item"><a href="pages/algorithms.html">01. ALGORITHMS</a></li>
+                <li class="note-item"><a href="pages/web-dev.html">02. WEB DEV</a></li>
+                <li class="note-item"><a href="pages/problem-solving.html">03. SOLUTIONS</a></li>
+                <li class="note-item"><a href="pages/data-structures.html">04. STRUCTURES</a></li>
             </ul>
         </div>
     </div>
