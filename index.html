@@ -3,218 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dev Notebook | 程式筆記</title>
+    <title>Notebook / 080</title>
     <style>
+        /* 基礎設定 */
         :root {
-            --primary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: #ffffff;
-            --accent-color: #3b82f6;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --bg: #0f1115;
+            --text: #e2e8f0;
+            --dim: #64748b;
+            --accent: #ff4d4d; /* 鮮艷的點綴色 */
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "SF Mono", "Monaco", "Cascadia Code", "Fira Code", monospace;
+            padding: 5vw 10vw;
+            line-height: 1.2;
+            overflow-x: hidden;
         }
 
-        /* 導航欄 */
-        nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 10%;
+        /* 頂部裝飾 */
+        .status-bar {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: var(--dim);
+            margin-bottom: 80px;
+            border-bottom: 1px solid #2d3139;
+            padding-bottom: 10px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* 英雄區塊 (Hero Section) */
+        /* 標題區：非對稱排版 */
         header {
-            padding: 5rem 10% 3rem;
-            text-align: center;
+            margin-bottom: 120px;
         }
 
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            line-height: 0.9;
+        }
+
+        header h1 span {
+            color: var(--accent);
         }
 
         header p {
-            font-size: 1.2rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
+            color: var(--dim);
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin-left: 5px;
         }
 
-        /* 搜尋框 */
-        .search-container {
-            margin: 2rem auto;
-            max-width: 500px;
+        /* 列表區：取消模塊感，改用條列式流動感 */
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
-        .search-bar {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 1px solid #e2e8f0;
-            outline: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-bar:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        /* 筆記分類卡片佈局 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 2rem 10% 5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
+        .nav-item {
+            display: flex;
+            align-items: baseline;
             text-decoration: none;
-            color: inherit;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            color: var(--text);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-color);
+        .nav-item .index {
+            font-size: 0.8rem;
+            color: var(--dim);
+            margin-right: 20px;
         }
 
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
+        .nav-item .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
-        .card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
+        .nav-item .desc {
+            font-size: 0.9rem;
+            color: var(--dim);
+            margin-left: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: 0.4s;
         }
 
-        .card p {
-            font-size: 0.95rem;
-            color: #64748b;
+        /* 懸停效果：文字錯位感 */
+        .nav-item:hover {
+            color: var(--accent);
+            padding-left: 20px;
         }
 
+        .nav-item:hover .desc {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 底部 */
         footer {
-            text-align: center;
-            padding: 3rem;
-            border-top: 1px solid #e2e8f0;
-            color: #94a3b8;
+            margin-top: 150px;
+            font-size: 12px;
+            color: var(--dim);
         }
 
-        /* 手機版調整 */
+        /* 裝飾用的背景浮水文字 */
+        .bg-text {
+            position: fixed;
+            bottom: -50px;
+            right: -20px;
+            font-size: 15vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: -1;
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .nav-links { display: none; }
+            .nav-item .title { font-size: 1.5rem; }
+            .nav-item .desc { display: none; }
+            header { margin-bottom: 60px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">DevNote.</a>
-        <div class="nav-links">
-            <a href="#">首頁</a>
-            <a href="#">所有筆記</a>
-            <a href="#">關於我</a>
-        </div>
-    </nav>
+    <div class="bg-text">CODE</div>
+
+    <div class="status-bar">
+        <span>LOC: TAIWAN, TW</span>
+        <span>LAST UPDATE: 2024.05.21</span>
+    </div>
 
     <header>
-        <h1>程式競賽與開發筆記</h1>
-        <p>記錄演算法、資料結構與 Web 開發的點點滴滴，將複雜的邏輯轉化為可視化的知識。</p>
-        
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="搜尋筆記，例如：Dijkstra, React...">
-        </div>
+        <h1>CP NOTE<span>.</span></h1>
+        <p>A personal collection of algorithms, logic, and pure chaos.</p>
     </header>
 
-    <main class="grid">
-        <a href="pages/algorithms.html" class="card">
-            <span class="card-icon">🧩</span>
-            <h3>演算法 (Algorithms)</h3>
-            <p>包含動態規劃、貪婪演算法及各類競賽常考題型解析。</p>
+    <main class="nav-list">
+        <a href="algorithms.html" class="nav-item">
+            <span class="index">01</span>
+            <span class="title">Algorithms</span>
+            <span class="desc">// 演算法與邏輯訓練</span>
         </a>
 
-        <a href="pages/data-structures.html" class="card">
-            <span class="card-icon">📊</span>
-            <h3>資料結構</h3>
-            <p>從基礎的 Stack, Queue 到進階的 Segment Tree 與圖論結構。</p>
+        <a href="data-struct.html" class="nav-item">
+            <span class="index">02</span>
+            <span class="title">Data Struct.</span>
+            <span class="desc">// 抽象數據與實現</span>
         </a>
 
-        <a href="pages/web-dev.html" class="card">
-            <span class="card-icon">🌐</span>
-            <h3>網頁開發</h3>
-            <p>前端框架、後端架構以及效能優化相關心得。</p>
+        <a href="web.html" class="nav-item">
+            <span class="index">03</span>
+            <span class="title">Web Lab</span>
+            <span class="desc">// 前端與實驗性功能</span>
         </a>
 
-        <a href="pages/snippets.html" class="card">
-            <span class="card-icon">✂️</span>
-            <h3>程式碼片段</h3>
-            <p>常用且高效的 Code Snippets，隨取隨用。</p>
-        </a>
-
-        <a href="pages/resources.html" class="card">
-            <span class="card-icon">📚</span>
-            <h3>學習資源</h3>
-            <p>推薦的書籍、線上課程與優質的技術部落格。</p>
-        </a>
-
-        <a href="pages/logs.html" class="card">
-            <span class="card-icon">📓</span>
-            <h3>開發日誌</h3>
-            <p>記錄平日遇到的 Bug 與解決過程的「碎碎念」。</p>
+        <a href="archive.html" class="nav-item">
+            <span class="index">04</span>
+            <span class="title">Archive</span>
+            <span class="desc">// 過往的筆記碎片</span>
         </a>
     </main>
 
     <footer>
-        <p>&copy; 2024 My Dev Notebook. Built with Love and Code.</p>
+        <p>CURATED BY BRIAN / POWERED BY GITHUB PAGES</p>
     </footer>
 
 </body>
