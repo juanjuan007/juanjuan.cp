@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>juanjuan | Dev Notebook</title>
+    <title>juanjuan | Notebook</title>
     <style>
-        /* --- 基礎復位 --- */
+        /* 基礎設定 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #f2f2f2; /* 淺灰色底，襯托主白框 */
+            background-color: #f8f9fa; /* 輕盈的背景色 */
             color: #1a1a1a;
-            font-family: "PingFang TC", "Helvetica Neue", Helvetica, Arial, "Microsoft JhengHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro TC", "Microsoft JhengHei", sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -19,21 +19,21 @@
             padding: 20px;
         }
 
-        /* --- 1. 整體方格放大 --- */
+        /* 1. 整體方格放大：最大寬度 1200px */
         .main-container {
             display: flex;
             width: 100%;
-            max-width: 1200px; /* 寬度放大到 1200px */
+            max-width: 1200px; 
             background: white;
-            padding: 80px; /* 內距加大，視覺更開闊 */
-            box-shadow: 0 40px 100px rgba(0,0,0,0.08); /* 深層柔和陰影 */
+            padding: 80px; /* 內距放大，更有呼吸感 */
+            box-shadow: 0 40px 100px rgba(0,0,0,0.06);
             border-radius: 24px;
             align-items: center;
         }
 
-        /* --- 2. 左側照片區 --- */
+        /* 2. 左側照片區：寬度增加 */
         .photo-side {
-            flex: 1.2; /* 照片佔比稍微大一點 */
+            flex: 1.2;
             padding-right: 80px;
             display: flex;
             justify-content: center;
@@ -41,39 +41,36 @@
 
         .photo-frame {
             width: 100%;
-            max-width: 450px; /* 長方形照片框架放大 */
+            max-width: 480px; /* 照片框放大 */
             overflow: hidden;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: #eee; /* 照片載入前的預設底色 */
         }
 
         .photo-frame img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.5s ease;
         }
 
         .photo-frame:hover img {
-            transform: scale(1.08); /* 懸停時照片微動態 */
+            transform: scale(1.05); /* 懸停放大效果 */
         }
 
-        /* --- 3. 右側文字選單區 --- */
+        /* 3. 右側文字區：分隔線與間距放大 */
         .content-side {
             flex: 1;
-            border-left: 2px solid #f0f0f0; /* 分隔線 */
+            border-left: 4px solid #f0f0f0; /* 線條加粗 */
             padding-left: 80px;
         }
 
         h1 {
-            font-size: 4rem; /* 標題放大 */
+            font-size: 4rem; /* 標題字體放大 */
             font-weight: 900;
             margin-bottom: 50px;
-            letter-spacing: -3px;
-            text-transform: uppercase;
-            line-height: 0.9;
-            color: #000;
+            letter-spacing: -2px;
+            line-height: 1;
         }
 
         .note-list {
@@ -81,7 +78,7 @@
         }
 
         .note-item {
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* 列表間距放大 */
         }
 
         .note-item a {
@@ -90,52 +87,23 @@
             font-size: 1.8rem; /* 選單文字放大 */
             font-weight: 700;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        /* 懸停時的小動畫 */
-        .note-item a::before {
-            content: "";
-            width: 0;
-            height: 3px;
-            background: #000;
-            margin-right: 0;
-            transition: 0.3s;
+            display: inline-block;
         }
 
         .note-item a:hover {
             color: #000;
-            padding-left: 10px;
+            transform: translateX(15px); /* 懸停向右滑動 */
         }
 
-        .note-item a:hover::before {
-            width: 30px;
-            margin-right: 15px;
-        }
-
-        /* --- 4. 響應式 (手機/平板) --- */
+        /* 響應式調整 */
         @media (max-width: 992px) {
             .main-container {
                 flex-direction: column;
-                padding: 60px 40px;
+                padding: 40px;
                 text-align: center;
-                max-width: 90%;
             }
-            .photo-side {
-                padding-right: 0;
-                margin-bottom: 50px;
-            }
-            .content-side {
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid #f0f0f0;
-                padding-top: 50px;
-                width: 100%;
-            }
-            .note-item a {
-                justify-content: center;
-            }
+            .photo-side { padding-right: 0; margin-bottom: 40px; }
+            .content-side { border-left: none; padding-left: 0; border-top: 4px solid #f0f0f0; padding-top: 40px; }
             h1 { font-size: 3rem; }
         }
     </style>
@@ -153,10 +121,9 @@
             <h1>JUAN<br>NOTE.</h1>
             <ul class="note-list">
                 <li class="note-item"><a href="pages/algorithms.html">Algorithms</a></li>
-                <li class="note-item"><a href="pages/web-dev.html">Web Dev</a></li>
-                <li class="note-item"><a href="pages/problem-solving.html">Solutions</a></li>
-                <li class="note-item"><a href="pages/data-structures.html">Structures</a></li>
-                <li class="note-item"><a href="pages/about.html">About Me</a></li>
+                <li class="note-item"><a href="pages/web-dev.html">Web Development</a></li>
+                <li class="note-item"><a href="pages/problem-solving.html">Problem Solving</a></li>
+                <li class="note-item"><a href="pages/data-structures.html">Data Structures</a></li>
             </ul>
         </div>
     </div>
