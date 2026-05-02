@@ -1,9 +1,11 @@
 ---
 layout: default
-title: Archives
+title: About me & Blog
 ---
 
 <div class="archives-container">
+  <a href="/" class="back-home">← Back</a>
+
   <h1>About me & Blog</h1>
   <hr>
 
@@ -25,11 +27,22 @@ title: Archives
 
 <style>
   .archives-container { max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; }
+  
+  /* 返回按鈕樣式：對齊 post 頁面風格 */
+  .back-home { 
+    display: inline-block;
+    margin-bottom: 25px; 
+    text-decoration: none; 
+    color: #bbb; 
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .back-home:hover { color: #000; }
+
   h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
   
   .post-item { margin: 15px 0; display: flex; align-items: center; }
   
-  /* 統一日期欄位寬度，確保 INFO 和 YYYY-MM-DD 對齊 */
   .post-date { 
     color: #999; 
     font-family: monospace; 
