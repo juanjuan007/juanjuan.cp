@@ -4,74 +4,40 @@ title: Archives
 ---
 
 <div class="archives-container">
-  <header class="intro-header">
-    <h1>About me & Blog</h1>
-    <p class="intro-text">
-      <a class="about-link-btn" href="{{ site.baseurl }}/about/">
-        About me<span class="arrow">→</span>
-      </a>
-    </p>
-  </header>
+  <h1>About me & Blog</h1>
+  <hr>
 
-  <hr class="separator">
-
-  <div class="posts-list">
-    {% for post in site.posts %}
-      {% capture current_year %}{{ post.date | date: "%Y" }}{% endcapture %}
-      
-      {% if current_year != last_year %}
-        <h2 class="year-title">{{ current_year }}</h2>
-        {% capture last_year %}{{ current_year }}{% endcapture %}
-      {% endif %}
-
-      <div class="post-item">
-        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-        <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
-      </div>
-    {% endfor %}
+  <div class="post-item intro-item">
+    <span class="post-date">ABOUT</span>
+    <a class="post-link" href="{{ site.baseurl }}/about/">Who is JuanJuan? — 點擊了解更多自我介紹</a>
   </div>
+
+  {% for post in site.posts %}
+    {% capture current_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% if current_year != last_year %}
+      <h2 class="year-title">{{ current_year }}</h2>
+      {% capture last_year %}{{ current_year }}{% endcapture %}
+    {% endif %}
+
+    <div class="post-item">
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
+    </div>
+  {% endfor %}
 </div>
 
 <style>
-  .archives-container { max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .archives-container { max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; }
+  h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+  .year-title { font-size: 1.8rem; margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+  .post-item { margin: 15px 0; display: flex; align-items: center; }
   
-  /* 頂部介紹樣式 */
-  .intro-header { margin-bottom: 30px; }
-  h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; color: #1a1a1a; }
-  .intro-text { font-size: 1.1rem; color: #666; }
-  
-  /* 連結按鈕樣式 */
-  .about-link-btn {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 4px 12px;
-    background-color: #f3f3f3;
-    color: #333;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-  }
-  .about-link-btn:hover { background-color: #000; color: #fff; }
-  .about-link-btn .arrow { margin-left: 4px; }
+  /* 自我介紹項目的特殊字體顏色，使其稍微區隔但結構一致 */
+  .intro-item .post-date { color: #555; font-weight: bold; }
+  .intro-item .post-link { color: #007bff; }
 
-  .separator { border: 0; border-top: 1px solid #eee; margin: 30px 0; }
-
-  /* 文章列表樣式 */
-  .year-title { font-size: 1.8rem; margin-top: 50px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; color: #222; }
-  .post-item { margin: 18px 0; display: flex; align-items: baseline; }
-  
-  /* 日期樣式：確保寬度足夠顯示 YYYY-MM-DD */
-  .post-date { 
-    color: #bbb; 
-    font-family: "Courier New", Courier, monospace; 
-    margin-right: 25px; 
-    font-size: 0.95rem; 
-    min-width: 100px; 
-    white-space: nowrap;
-  }
-  
-  .post-link { color: #444; text-decoration: none; font-size: 1.15rem; font-weight: 500; transition: color 0.2s; line-height: 1.4; }
-  .post-link:hover { color: #007bff; }
+  /* 日期樣式：調整寬度以容納 YYYY-MM-DD */
+  .post-date { color: #999; font-family: monospace; margin-right: 20px; font-size: 1.1rem; min-width: 120px; }
+  .post-link { color: #333; text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: color 0.3s; }
+  .post-link:hover { color: #000; text-decoration: underline; }
 </style>
