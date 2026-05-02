@@ -1,2 +1,7 @@
 permalink: /blog/:title/
 future: true
+
+collections:
+  problems:
+    output: true
+    permalink: /problems/:title/
