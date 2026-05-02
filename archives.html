@@ -11,7 +11,7 @@ title: Archives
     <a class="post-link" href="{{ site.baseurl }}/about/">About me</a>
   </div>
 
-
+  {% for post in site.posts %}
     <div class="post-item">
       <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
       <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
@@ -22,15 +22,27 @@ title: Archives
 <style>
   .archives-container { max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; }
   h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
-  .year-title { font-size: 1.8rem; margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+  
+  /* 列表項目樣式 */
   .post-item { margin: 15px 0; display: flex; align-items: center; }
   
-  /* 自我介紹項目的特殊字體顏色，使其稍微區隔但結構一致 */
-  .intro-item .post-date { color: #555; font-weight: bold; }
-  .intro-item .post-link { color: #007bff; }
+  /* 自我介紹項目的微調 */
+  .intro-item .post-date { color: #444; font-weight: bold; }
+  .intro-item .post-link { color: #333; font-weight: 700; }
 
-  /* 日期樣式：調整寬度以容納 YYYY-MM-DD */
-  .post-date { color: #999; font-family: monospace; margin-right: 20px; font-size: 1.1rem; min-width: 120px; }
+  /* 日期樣式：統一寬度，確保對齊 */
+  .post-date { 
+    color: #999; 
+    font-family: monospace; 
+    margin-right: 20px; 
+    font-size: 1.1rem; 
+    min-width: 120px; 
+    flex-shrink: 0; 
+  }
+  
   .post-link { color: #333; text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: color 0.3s; }
   .post-link:hover { color: #000; text-decoration: underline; }
+  
+  /* 移除原本年份標題的樣式（因為已刪除 HTML） */
+  hr { border: 0; border-top: 1px solid #eee; margin-bottom: 30px; }
 </style>
