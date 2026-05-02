@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+<div class="main-container">
+    <div class="content-side">
+        <h1>{{ page.title | replace: " ", "<br>" }}.</h1>
+
+        <div class="tag-group-container">
+            {% for tag in site.tags %}
+                <div class="tag-section">
+                    <h2 class="tag-heading">{{ tag[0] }}</h2>
+                    <ul class="note-list">
+                        {% for post in tag[1] %}
+                            <li class="note-item">
+                                <a href="{{ post.url }}">{{ post.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="extra-content">
+            {{ content }}
+        </div>
+    </div>
+</div>
+
+<style>
+    .main-container {
+        display: flex;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px;
+        align-items: flex-start;
+    }
+
+    .content-side {
+        flex: 1;
+        border-left: 4px solid #f0f0f0;
+        padding-left: 80px;
+    }
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 900;
+        margin-bottom: 60px;
+        letter-spacing: -2px;
+        line-height: 1;
+        color: #1a1a1a;
+        text-transform: capitalize;
+    }
+
+    .tag-section { margin-bottom: 50px; }
+
+    .tag-heading {
+        font-size: 1rem;
+        color: #bbb;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        font-family: monospace;
+    }
+
+    .note-list { list-style: none; }
+
+    .note-item { margin-bottom: 25px; }
+
+    .note-item a {
+        text-decoration: none;
+        color: #666;
+        font-size: 1.8rem;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .note-item a:hover {
+        color: #000;
+        transform: translateX(15px);
+    }
+
+    @media (max-width: 992px) {
+        .main-container { padding: 40px; }
+        .content-side { padding-left: 40px; }
+        h1 { font-size: 3rem; }
+    }
+</style>
