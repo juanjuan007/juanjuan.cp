@@ -16,7 +16,71 @@ title: Archives
     <div class="post-item">
       <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
       <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
+    </div>---
+layout: default
+title: Archives
+---
+
+<div class="archives-container">
+  <h1>About me & Blog</h1>
+  <hr>
+
+  <div class="post-item">
+    <span class="post-date">INFO</span> 
+    <a class="post-link" href="{{ site.baseurl }}/About-me">About me (關於我)</a>
+  </div>
+
+  {% for post in site.posts %}
+    <div class="post-item">
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
     </div>
+  {% endfor %}
+</div>
+
+<style>
+  .archives-container { 
+    max-width: 800px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+    font-family: sans-serif; 
+  }
+  
+  h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+  
+  /* 列表項目樣式：About me 與文章共用 */
+  .post-item { 
+    margin: 15px 0; 
+    display: flex; 
+    align-items: center; 
+  }
+  
+  /* 日期與 INFO 標籤樣式：統一寬度與字體 */
+  .post-date { 
+    color: #999; 
+    font-family: monospace; 
+    margin-right: 20px; 
+    font-size: 1.1rem; 
+    min-width: 120px; /* 關鍵：確保寬度一致才能對齊 */
+    flex-shrink: 0; 
+  }
+  
+  /* 連結樣式：About me 與文章共用 */
+  .post-link { 
+    color: #333; 
+    text-decoration: none; 
+    font-size: 1.2rem; 
+    font-weight: 500; 
+    transition: color 0.3s; 
+  }
+  
+  .post-link:hover { 
+    color: #000; 
+    text-decoration: underline; 
+  }
+  
+  hr { border: 0; border-top: 1px solid #eee; margin-bottom: 30px; }
+</style>
   {% endfor %}
 </div>
 
